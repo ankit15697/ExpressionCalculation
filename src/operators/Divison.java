@@ -7,7 +7,10 @@ public class Divison implements Operator{
 
     }
 
-    public Double doCalculation(Double ...operands) {
+    public Double doCalculation(Double ...operands) throws InValidOperandException {
+        if(operands.length != 2) {
+            throw new InValidOperandException("Only two operands should be but entered opertors by you : "+operands.length);
+        }
         if(operands[0] == Math.floor(operands[0])) {
             double second = operands[0];
             int integerResult = (int)second;

@@ -10,7 +10,9 @@ public class InfixCalculation {
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter input Expression !!!");
         String expression = sc.nextLine();
-        ExpressionCalculation exp = new ExpressionCalculation(expression);
 
+        // Controller object is being created here
+        ExpressionCalculation exp = new ExpressionCalculation(expression);
+        exp.performCalculation();
     }
 }

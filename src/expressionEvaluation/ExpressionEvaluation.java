@@ -1,5 +1,6 @@
 //This class will be responsible for evaluating the expression
 package expressionEvaluation;
+import customExceptions.InValidOperandException;
 import operators.*;
 import expressionData.*;
 import expressionParts.*;
@@ -80,10 +81,20 @@ public class ExpressionEvaluation {
         String currentOp = expressionOperators.pop();
         Operator currentOperator = OperatorGeneration.getOperator(currentOp);
         if (expressionData.isUnary(currentOp)) {
-            values.push(currentOperator.doCalculation(values.pop()));
+            try {
+                values.push(currentOperator.doCalculation(values.pop()));
+            }
+            catch (InValidOperandException e) {
+                e.getMessage();
+            }
         }
         else if(expressionData.isBinary(currentOp)) {
-            values.push(currentOperator.doCalculation(values.pop(), values.pop()));
+            try {
+                values.push(currentOperator.doCalculation(values.pop(), values.pop()));
+            }
+            catch (InValidOperandException e){
+                e.getMessage();
+            }
         }
     }
 }

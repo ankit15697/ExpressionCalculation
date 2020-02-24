@@ -1,12 +1,18 @@
 // This class will do addition
 package operators;
-public class Addition implements Operator{
+
+import customExceptions.InValidOperandException;
+
+public class Addition implements Operator  {
     //Constructor
     public  Addition(){
 
     }
 
-    public Double doCalculation(Double ...operands) {
+    public Double doCalculation(Double ...operands) throws InValidOperandException {
+        if(operands.length != 2) {
+            throw new InValidOperandException("Only two operands should be but entered opertors by you : "+operands.length);
+        }
         return operands[0] + operands[1];
     }
 }

@@ -14,18 +14,26 @@ public class ExpressionCalculation {
     // Constructor
     public  ExpressionCalculation(String expression){
         this.expression = expression;
+        init();
+    }
+    // This method will initialize the data
+    private void init(){
         splittedExpression = new LinkedList<ExpressionPart>();
         expressionPartition = new ExpressionPartition(expression);
         expressionEvaluation = new ExpressionEvaluation();
         expressionValidation = new ExpressionValidation();
-        init();
     }
     // This method will take expression parts from ExpressionPartition class
-    public void init() {
+    public void performCalculation() {
         expressionPartition.convertIntoExpressionParts();
         splittedExpression = expressionPartition.getExpressionParts();
         expressionValidation.isValid(splittedExpression);
         ExpressionPart evaluatedPart = expressionEvaluation.evaluate(splittedExpression);
+        printResult(evaluatedPart);
+    }
+
+    // This method will print the result
+    private void printResult(ExpressionPart evaluatedPart) {
         double result = Double.parseDouble(evaluatedPart.getExpressionPart());
         if(result == Math.floor(result)) {
             int integerResult = (int)result;
@@ -34,7 +42,6 @@ public class ExpressionCalculation {
         else {
             System.out.println(evaluatedPart.getExpressionPart());
         }
-
     }
 
 }
