@@ -1,4 +1,3 @@
-package com.expression.MainClass;
 import java.util.*;
 import com.expression.controller.*;
 // This is main class which will be responsible for handling the input expression and will give control to the controller class
