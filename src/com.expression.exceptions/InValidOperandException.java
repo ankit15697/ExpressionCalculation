@@ -1,4 +1,4 @@
-// This class will be responsible for invalid number of operands
+// This class will be responsible for invalid number of operands and should be checked
 package com.expression.exceptions;
 
 public class InValidOperandException extends Exception{

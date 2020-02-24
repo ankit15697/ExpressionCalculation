@@ -1,4 +1,5 @@
-// This class will be responsible for generating the objects based on
+// This class will be responsible for generating the objects based on Operator
+// This is factory pattern
 package com.expression.operators;
 public class OperatorGeneration {
     // Constructor
@@ -28,7 +29,7 @@ public class OperatorGeneration {
         else if(operator.equals("tan")) {
             return new Tan();
         }
-
+        //If operator is unmatched
         return null;
     }
 }

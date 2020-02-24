@@ -11,6 +11,8 @@ public class ExpressionValidation {
         expressionData = new ExpressionData();
         parenthesis = new Stack<String>();
     }
+
+    // This function will perform validation
     public void isValid(LinkedList<ExpressionPart> expressionParts) {
         // Run loop till end of expressionParts
         for(int i = 0; i < expressionParts.size(); i++) {
@@ -19,9 +21,11 @@ public class ExpressionValidation {
             //Check that there are valid integer
             int countDecimal = 0;
             boolean flag = false;
+            //Left Parenthesis
             if(currentExpression == "(") {
                 parenthesis.push("(");
             }
+            //Right Parenthesis
             else if(currentExpression == ")") {
                 if(!parenthesis.empty()) {
                     parenthesis.pop();
@@ -30,6 +34,7 @@ public class ExpressionValidation {
                     throw new InValidCharacterException("!!! OOPs!! There are invalid bracket combinations");
                 }
             }
+            // If numeric part found
             for(int j = 0; j < currentExpression.length(); j++) {
                 if(currentExpression.charAt(j) == '.') {
                     countDecimal++;
@@ -52,6 +57,7 @@ public class ExpressionValidation {
                 throw new InValidCharacterException("!!! More than two operators found at" +currentExpression + expressionParts.get(i+1).getExpressionPart());
             }
         }
+        // parenthesis check
         if(!parenthesis.empty()) {
             throw new InValidCharacterException("!!! OOPs!! There are invalid bracket combinations");
         }

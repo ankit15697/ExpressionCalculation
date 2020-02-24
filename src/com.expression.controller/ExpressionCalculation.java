@@ -25,9 +25,12 @@ public class ExpressionCalculation {
     }
     // This method will take expression parts from ExpressionPartition class
     public void performCalculation() {
+        // Expression is being convert into parts
         expressionPartition.convertIntoExpressionParts();
         splittedExpression = expressionPartition.getExpressionParts();
+        //Validation is being done here
         expressionValidation.isValid(splittedExpression);
+        //After evaluation result is being stored here
         ExpressionPart evaluatedPart = expressionEvaluation.evaluate(splittedExpression);
         printResult(evaluatedPart);
     }

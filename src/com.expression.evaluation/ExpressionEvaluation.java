@@ -34,6 +34,7 @@ public class ExpressionEvaluation {
                 }
                 expressionOperators.pop();
             }
+            //If current is operator
             else if(!expressionData.isOperator(currentExpression)) {
                 values.push(Double.parseDouble(currentExpression));
             }

@@ -1,4 +1,4 @@
-// This class will be responsilbe for dividing expression into smaller parts
+// This class will be responsible for dividing expression into smaller parts
 // This class will return the linked list of the expression parts
 package com.expression.part;
 import java.util.*;
@@ -31,6 +31,7 @@ public  class ExpressionPartition {
             else if(currentChar == ' ') {
                 continue;
             }
+            // Check for numeric
             else if(Character.isDigit(currentChar) || currentChar == '.') {
                 StringBuffer currentNumber = new StringBuffer();
                 while(i<expression.length() && (Character.isDigit(expression.charAt(i)) || expression.charAt(i) =='.')) {
@@ -42,6 +43,7 @@ public  class ExpressionPartition {
                 expressionParts.add(new ExpressionPart(currentNumber.toString()));
                 continue;
             }
+            // Check for alphabetic
             else if(Character.isAlphabetic(currentChar)) {
                 StringBuffer currentOperator = new StringBuffer();
                 while (i < expression.length() && (Character.isAlphabetic(expression.charAt(i)))) {
@@ -59,6 +61,7 @@ public  class ExpressionPartition {
                 }
                 continue;
             }
+            // Check for operator
             else {
                 String currentOp = Character.toString(currentChar);
                 if(expressionData.isOperator(currentOp)) {
@@ -71,6 +74,7 @@ public  class ExpressionPartition {
         }
     }
 
+    // this method will return the list of expression parts
     public LinkedList<ExpressionPart> getExpressionParts() {
         return expressionParts;
     }
