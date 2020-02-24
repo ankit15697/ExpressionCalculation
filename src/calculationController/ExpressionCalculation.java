@@ -24,12 +24,7 @@ public class ExpressionCalculation {
     public void init() {
         expressionPartition.convertIntoExpressionParts();
         splittedExpression = expressionPartition.getExpressionParts();
-        try {
-            expressionValidation.isValid(splittedExpression);
-        }
-        catch(InValidCharacterException e) {
-            System.out.println(e.getMessage());
-        }
+        expressionValidation.isValid(splittedExpression);
         ExpressionPart evaluatedPart = expressionEvaluation.evaluate(splittedExpression);
         double result = Double.parseDouble(evaluatedPart.getExpressionPart());
         if(result == Math.floor(result)) {

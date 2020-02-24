@@ -74,6 +74,8 @@ public class ExpressionEvaluation {
         }
         return true;
     }
+
+    // This method will perform calculation
     private void performCalculation() {
         String currentOp = expressionOperators.pop();
         Operator currentOperator = OperatorGeneration.getOperator(currentOp);
