@@ -1,4 +1,4 @@
-//This class will be responsible for evaluting the expression
+//This class will be responsible for evaluating the expression
 package expressionEvaluation;
 import operators.*;
 import expressionData.*;
@@ -16,19 +16,22 @@ public class ExpressionEvaluation {
     }
     // This method will evalute the expression
     public ExpressionPart evaluate(LinkedList<ExpressionPart> expressionParts) {
-        // Run a loope till end of the expression size
+        // Run a loop till end of the expression size
         for (int i = 0; i < expressionParts.size(); i++) {
             String currentExpression = expressionParts.get(i).getExpressionPart().trim();
             if(currentExpression.equals("(")) {
                 expressionOperators.push(currentExpression);
             }
             else if(currentExpression.equals(")")) {
-
+                while(!expressionOperators.peek().equals("(")) {
+                  performCalculation();
+                }
+                expressionOperators.pop();
             }
             else if(!expressionData.isOperator(currentExpression)) {
                 values.push(Double.parseDouble(currentExpression));
             }
-            // If negative number occurrs here
+            // If negative number occurs here
             else if(currentExpression.equals("-") && (i==0 || (expressionData.isOperator(expressionParts.get(i-1).getExpressionPart()) || expressionParts.get(i-1).getExpressionPart() == "("))) {
                     Double negativeValue = Double.parseDouble(expressionParts.get(i+1).getExpressionPart());
                     negativeValue = -negativeValue;
@@ -37,27 +40,13 @@ public class ExpressionEvaluation {
             }
             else {
                 while(!expressionOperators.empty() && precedence(currentExpression, expressionOperators.peek())) {
-                    String currentOp = expressionOperators.pop();
-                    Operator currentOperator = OperatorGeneration.getOperator(currentOp);
-                    if (expressionData.isUnary(currentOp)) {
-                        values.push(currentOperator.doCalculation(values.pop()));
-                    }
-                    else if(expressionData.isBinary(currentOp)) {
-                        values.push(currentOperator.doCalculation(values.pop(), values.pop()));
-                    }
+                  performCalculation();
                 }
                 expressionOperators.push(currentExpression);
             }
         }
         while(!expressionOperators.empty()) {
-            String currentOp = expressionOperators.pop();
-            Operator currentOperator = OperatorGeneration.getOperator(currentOp);
-            if (expressionData.isUnary(currentOp)) {
-                values.push(currentOperator.doCalculation(values.pop()));
-            }
-            else if(expressionData.isBinary(currentOp)) {
-                values.push(currentOperator.doCalculation(values.pop(), values.pop()));
-            }
+           performCalculation();
         }
         return (new ExpressionPart(String.valueOf(values.pop())));
     }
@@ -84,5 +73,15 @@ public class ExpressionEvaluation {
             return false;
         }
         return true;
+    }
+    private void performCalculation() {
+        String currentOp = expressionOperators.pop();
+        Operator currentOperator = OperatorGeneration.getOperator(currentOp);
+        if (expressionData.isUnary(currentOp)) {
+            values.push(currentOperator.doCalculation(values.pop()));
+        }
+        else if(expressionData.isBinary(currentOp)) {
+            values.push(currentOperator.doCalculation(values.pop(), values.pop()));
+        }
     }
 }
