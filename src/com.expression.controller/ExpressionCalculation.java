@@ -29,10 +29,14 @@ public class ExpressionCalculation {
         expressionPartition.convertIntoExpressionParts();
         splittedExpression = expressionPartition.getExpressionParts();
         //Validation is being done here
-        expressionValidation.isValid(splittedExpression);
-        //After evaluation result is being stored here
-        ExpressionPart evaluatedPart = expressionEvaluation.evaluate(splittedExpression);
-        printResult(evaluatedPart);
+        if(expressionValidation.isValid(splittedExpression)) {
+            //After evaluation result is being stored here
+            ExpressionPart evaluatedPart = expressionEvaluation.evaluate(splittedExpression);
+            printResult(evaluatedPart);
+        }
+        else {
+            System.out.println("Expression is not valid");
+        }
     }
 
     // This method will print the result
