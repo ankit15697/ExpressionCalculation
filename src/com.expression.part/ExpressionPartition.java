@@ -11,12 +11,10 @@ public  class ExpressionPartition {
     // These linked list will be used to store the objects of expression Parts
     private LinkedList <ExpressionPart> expressionParts;
     private String expression;
-    private ExpressionData expressionData;
    // Constructor
     public ExpressionPartition(String expression) {
         this.expression = expression;
         expressionParts = new LinkedList<ExpressionPart> ();
-        expressionData = new ExpressionData();
     }
     // This method will convert expression into expression parts
     public void convertIntoExpressionParts() {
@@ -53,7 +51,7 @@ public  class ExpressionPartition {
                     i--;
                 }
                 String currentOp = currentOperator.toString();
-                if(expressionData.isOperator(currentOp)) {
+                if(ExpressionData.isOperator(currentOp)) {
                     expressionParts.add(new ExpressionPart(currentOp));
                 }
                 else {
@@ -64,7 +62,7 @@ public  class ExpressionPartition {
             // Check for operator
             else {
                 String currentOp = Character.toString(currentChar);
-                if(expressionData.isOperator(currentOp)) {
+                if(ExpressionData.isOperator(currentOp)) {
                     expressionParts.add(new ExpressionPart(currentOp));
                 }
                 else {

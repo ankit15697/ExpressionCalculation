@@ -8,11 +8,9 @@ import java.util.*;
 public class ExpressionEvaluation {
     private Stack<Double> values;
     private Stack<String> expressionOperators;
-    private ExpressionData expressionData;
     // Constructor
     public ExpressionEvaluation() {
         values = new Stack<Double>();
-        expressionData = new ExpressionData();
         expressionOperators = new Stack<String> ();
     }
     // This method will evalute the expression
@@ -35,11 +33,11 @@ public class ExpressionEvaluation {
                 expressionOperators.pop();
             }
             //If current is operator
-            else if(!expressionData.isOperator(currentExpression)) {
+            else if(!ExpressionData.isOperator(currentExpression)) {
                 values.push(Double.parseDouble(currentExpression));
             }
             // If negative number occurs here
-            else if(currentExpression.equals("-") && (i==0 || (expressionData.isOperator(expressionParts.get(i-1).getExpressionPart()) || expressionParts.get(i-1).getExpressionPart() == "("))) {
+            else if(currentExpression.equals("-") && (i==0 || (ExpressionData.isOperator(expressionParts.get(i-1).getExpressionPart()) || expressionParts.get(i-1).getExpressionPart() == "("))) {
                     Double negativeValue = Double.parseDouble(expressionParts.get(i+1).getExpressionPart());
                     negativeValue = -negativeValue;
                     values.push(negativeValue);
@@ -86,7 +84,7 @@ public class ExpressionEvaluation {
         if((first.equals( "*") || first.equals("/")) && (second.equals("+") || second.equals("-"))) {
             return false;
         }
-        if(expressionData.isUnary(first)) {
+        if(ExpressionData.isUnary(first)) {
             return false;
         }
         return true;
@@ -99,7 +97,7 @@ public class ExpressionEvaluation {
         if(currentOperator == null) {
             throw new NullOperatorException("!!!Entered operator has not been found ");
         }
-        if (expressionData.isUnary(currentOp)) {
+        if (ExpressionData.isUnary(currentOp)) {
             try {
                 values.push(currentOperator.doCalculation(values.pop()));
             }
@@ -107,7 +105,7 @@ public class ExpressionEvaluation {
                 e.getMessage();
             }
         }
-        else if(expressionData.isBinary(currentOp)) {
+        else if(ExpressionData.isBinary(currentOp)) {
             try {
                 values.push(currentOperator.doCalculation(values.pop(), values.pop()));
             }

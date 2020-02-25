@@ -5,10 +5,8 @@ import com.expression.part.*;
 import java.util.*;
 import com.expression.model.*;
 public class ExpressionValidation {
-    private ExpressionData expressionData;
     private Stack<String> parenthesis;
     public ExpressionValidation(){
-        expressionData = new ExpressionData();
         parenthesis = new Stack<String>();
     }
 
@@ -54,11 +52,11 @@ public class ExpressionValidation {
                 result = false;
                 throw new InValidCharacterException("!!! OOPs!! There are more than one decimal point in singel number " +currentExpression);
             }
-            if(i == expressionParts.size()-1 && expressionData.isOperator(currentExpression)) {
+            if(i == expressionParts.size()-1 && ExpressionData.isOperator(currentExpression)) {
                 result = false;
                 throw new InValidCharacterException("!!! Operand is found at the end of expression" +currentExpression);
             }
-            if(expressionData.isOperator(currentExpression) && (expressionData.isOperator(expressionParts.get(i+1).getExpressionPart()) && expressionParts.get(i+1).getExpressionPart().equals(currentExpression))){
+            if(ExpressionData.isOperator(currentExpression) && (ExpressionData.isOperator(expressionParts.get(i+1).getExpressionPart()) && expressionParts.get(i+1).getExpressionPart().equals(currentExpression))){
                 result = false;
                 throw new InValidCharacterException("!!! More than two operators found at" +currentExpression + expressionParts.get(i+1).getExpressionPart());
             }
