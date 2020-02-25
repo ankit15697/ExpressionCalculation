@@ -10,11 +10,11 @@ public class InfixCalculation  {
 
     // Main function begins from here
     public  static void main (String args[]) throws IOException {
-        int t;
+        int numberOfexpressions;
         Scanner sc = new Scanner(System.in);
         System.out.print("Enter Number of expressions want to evaluate : ");
-        t = sc.nextInt();
-        while(t--!= 0) {
+        numberOfexpressions = sc.nextInt();
+        while(numberOfexpressions--!= 0) {
             // input will be taken from the user
             System.out.println("Enter Expression ");
             BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
