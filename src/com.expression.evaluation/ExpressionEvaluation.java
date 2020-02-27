@@ -4,6 +4,8 @@ import com.expression.exceptions.*;
 import com.expression.operators.*;
 import com.expression.model.*;
 import com.expression.part.*;
+import org.jetbrains.annotations.NotNull;
+
 import java.util.*;
 public class ExpressionEvaluation {
     private Stack<Double> values;
@@ -14,7 +16,7 @@ public class ExpressionEvaluation {
         expressionOperators = new Stack<String> ();
     }
     // This method will evalute the expression
-    public ExpressionPart evaluate(LinkedList<ExpressionPart> expressionParts) {
+    public ExpressionPart evaluate(@NotNull LinkedList<ExpressionPart> expressionParts) {
         // Run a loop till end of the expression size
         for (int i = 0; i < expressionParts.size(); i++) {
             String currentExpression = expressionParts.get(i).getExpressionPart().trim();

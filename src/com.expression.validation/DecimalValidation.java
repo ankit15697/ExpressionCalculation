@@ -2,12 +2,13 @@ package com.expression.validation;
 
 import com.expression.exceptions.InValidCharacterException;
 import com.expression.part.ExpressionPart;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.LinkedList;
 
 public class DecimalValidation implements TokenValidation{
     @Override
-    public boolean performValidation(LinkedList<ExpressionPart> currentExp, int currentIndex) {
+    public boolean performValidation(@NotNull LinkedList<ExpressionPart> currentExp, int currentIndex) {
         boolean result = true;
         String currentExpression = currentExp.get(currentIndex).getExpressionPart();
         int countDecimal = 0;

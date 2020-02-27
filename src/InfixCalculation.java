@@ -24,7 +24,6 @@ public class InfixCalculation  {
             catch (IOException e){
                 e.getMessage();
             }
-
             // Controller object is being created here
             ExpressionCalculation exp = new ExpressionCalculation(expression);
             exp.performCalculation();

@@ -4,6 +4,8 @@ import com.expression.exceptions.*;
 import com.expression.part.*;
 import java.util.*;
 import com.expression.model.*;
+import org.jetbrains.annotations.NotNull;
+
 public class ExpressionValidation {
 
     public ExpressionValidation(){
@@ -27,7 +29,9 @@ public class ExpressionValidation {
         }
         return result;
     }
-    private static boolean isparenthesisValid(LinkedList<ExpressionPart> expressionParts) {
+
+
+    private static boolean isparenthesisValid(@NotNull LinkedList<ExpressionPart> expressionParts) {
         boolean result = true;
         Stack<String> parenthesis = new Stack<String>();
         for (int i =0;i<expressionParts.size(); i++) {
