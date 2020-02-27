@@ -10,7 +10,6 @@ public class ExpressionCalculation {
     private LinkedList<ExpressionPart> splittedExpression;
     private ExpressionPartition expressionPartition;
     private ExpressionEvaluation expressionEvaluation;
-    private ExpressionValidation expressionValidation;
     // Constructor
     public  ExpressionCalculation(String expression){
         this.expression = expression;
@@ -21,7 +20,6 @@ public class ExpressionCalculation {
         splittedExpression = new LinkedList<ExpressionPart>();
         expressionPartition = new ExpressionPartition(expression);
         expressionEvaluation = new ExpressionEvaluation();
-        expressionValidation = new ExpressionValidation();
     }
     // This method will take expression parts from ExpressionPartition class
     public void performCalculation() {
@@ -29,7 +27,7 @@ public class ExpressionCalculation {
         expressionPartition.convertIntoExpressionParts();
         splittedExpression = expressionPartition.getExpressionParts();
         //Validation is being done here
-        if(expressionValidation.isValid(splittedExpression)) {
+        if(ExpressionValidation.isValid(splittedExpression)) {
             //After evaluation result is being stored here
             ExpressionPart evaluatedPart = expressionEvaluation.evaluate(splittedExpression);
             printResult(evaluatedPart);

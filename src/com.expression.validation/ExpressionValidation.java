@@ -10,7 +10,7 @@ public class ExpressionValidation {
     }
 
     // This method will perform validation
-    public boolean isValid(LinkedList<ExpressionPart> expressionParts) {
+    public static boolean isValid(LinkedList<ExpressionPart> expressionParts) {
         // Run loop till end of expressionParts
         boolean result = true;
         result = isparenthesisValid(expressionParts);
@@ -27,7 +27,7 @@ public class ExpressionValidation {
         }
         return result;
     }
-    private boolean isparenthesisValid(LinkedList<ExpressionPart> expressionParts) {
+    private static boolean isparenthesisValid(LinkedList<ExpressionPart> expressionParts) {
         boolean result = true;
         Stack<String> parenthesis = new Stack<String>();
         for (int i =0;i<expressionParts.size(); i++) {
