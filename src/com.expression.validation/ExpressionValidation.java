@@ -19,11 +19,11 @@ public class ExpressionValidation {
         }
         for(int i = 0; i < expressionParts.size(); i++) {
             String current = expressionParts.get(i).getExpressionPart();
-           TokenValidation tokenValidation = TokenValidationGenerator.getCurrentTokenValidation(current);
-           result = tokenValidation.performValidation(expressionParts,i);
-           if(!result) {
-               return false;
-           }
+            TokenValidation tokenValidation = TokenValidationGenerator.getCurrentTokenValidation(current);
+            result = tokenValidation.performValidation(expressionParts,i);
+            if(!result) {
+                return false;
+            }
         }
         return result;
     }
